@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Corben", Georgia, Times, serif;
+}
+p,
+div {
+  font-family: "Nobile", Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: url("https://imagesfortodo.s3.ap-south-1.amazonaws.com/cream_dust_%402X.png")
+    repeat 0 0;
+}
+
+h1 {
+  text-shadow: 1px 1px 1px #ccc;
+}

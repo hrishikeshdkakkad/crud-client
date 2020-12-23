@@ -1,0 +1,56 @@
+<h1>Employee Dashboard</h1>
+<nav class="navbar">
+  <input class="form-control" type="text" name="name" [(ngModel)]="name" (ngModelChange)="Search()"
+    placeholder="Enter Name to search">
+</nav>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th (click)="sort('employeeID')">Employee ID <i class="fa fa-sort"></i></th>
+      <th>Employee Name</th>
+      <th>Employee Dob</th>
+      <th (click)="sort('salary')">Employee Salary <i class="fa fa-sort"></i></th>
+      <th>Employee Skills</th>
+      <th>Upload/Update Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employeeInformation | orderBy: key: reverse |paginate: {itemsPerPage:5, currentPage:p}">
+      <td>{{employee.employeeID}}</td>
+      <td>{{employee.name}}</td>
+      <td>{{employee.dob}}</td>
+      <td>{{employee.salary}}</td>
+      <td>
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+          Skills
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div *ngFor="let skill of employee.skills" class="modal-body">
+                {{skill}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <input type="file" (change)="onFileSelected($event, employee.employeeID)">
+      </td>
+    </tr>
+  </tbody>
+  <pagination-controls (pageChange)='p = $event'></pagination-controls>
+</table>
+
+
+<!-- *ngFor="let skill of employee.skills" -->

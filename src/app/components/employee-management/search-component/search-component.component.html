@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <form *ngIf="showSearch" #employeeImage="ngForm" (ngSubmit)="onSubmit(employeeImage)" novalidate>
+    <div class="form-group info">
+      <label for="">Employee image Search - Enter employee ID<span class="text-danger"
+          [class.d-none]="name.valid || name.untouched"> Cannot be
+          empty</span></label>
+      <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control"
+        name="photo" ngModel>
+      <div style="margin-top: 10px;" class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-info" data-dismiss="modal">Get Image</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="showImage">
+    <img width="200" height="200" [src]="image" (error)="imageError()" alt="">
+  </div>
+  <div class="d-flex justify-content-center">
+    <button *ngIf="showImage" (click)="toggleButtonNav()" class="btn btn-dark">Back to search</button>
+  </div>
+  <small *ngIf="found" class="text-danger">{{error}}</small>
+</div>

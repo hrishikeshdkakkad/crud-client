@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <h5>Add Employee</h5>
+
+  <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm.value)" novalidate>
+    <div class="form-group info">
+      <label for="">Name<span class="text-danger" [class.d-none]="name.valid || name.untouched"> Cannot be
+          empty</span></label>
+      <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control"
+        name="name" ngModel>
+    </div>
+    <div class="form-group info">
+      <label for="">DOB<span class="text-danger" [class.d-none]="dob.valid || dob.untouched"> Cannot be
+          empty</span></label>
+      <input type="text" required #dob="ngModel" [class.is-invalid]="dob.invalid && dob.touched" class="form-control"
+        name="dob" ngModel>
+    </div>
+    <div class="form-group info">
+      <label for="">Salary<span class="text-danger" [class.d-none]="salary.valid || salary.untouched"> Cannot be
+          empty</span></label>
+      <input type="text" required #salary="ngModel" [class.is-invalid]="salary.invalid && salary.touched"
+        class="form-control" name="salary" ngModel>
+    </div>
+
+    <div ngModelGroup="skills" class="form-check info">
+      <label for="">Check Skills</label>
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+          <i class="glyphicon">Skills</i>
+        </button>
+        <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
+
+          <li *ngFor="let skill of skills">
+            <label>
+              <input type="checkbox" [name]="skill" [value]="skill" ngModel> {{skill}}
+            </label>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <button [disabled]="employeeForm.form.invalid" class="btn btn-dark">Add User</button>
+    <p style="color: red;">{{error}}</p>
+    <p style="color: green;">{{submitted}}</p>
+
+  </form>
+</div>
