@@ -58,4 +58,27 @@ export class AllEmployeeDetailsComponent implements OnInit {
       }
     );
   }
+
+  deleteDocument(id: string) {
+    this._getAllEmployees.deleteEmployeeDocument(id).subscribe(
+      (result) => {
+        console.log(result);
+        window.location.reload(); //Set to reload the page
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  onReqToEdit(field: string, value: string, id: number) {
+    this._getAllEmployees.updateEmployeeDetails(field, value, id).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

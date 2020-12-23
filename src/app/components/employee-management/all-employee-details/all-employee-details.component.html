@@ -12,6 +12,8 @@
       <th (click)="sort('salary')">Employee Salary <i class="fa fa-sort"></i></th>
       <th>Employee Skills</th>
       <th>Upload/Update Image</th>
+      <th>Delete Employee</th>
+      <th>Update</th>
     </tr>
   </thead>
   <tbody>
@@ -46,6 +48,20 @@
       </td>
       <td>
         <input type="file" (change)="onFileSelected($event, employee.employeeID)">
+      </td>
+      <td>
+        <button type="file" (click)="deleteDocument(employee.employeeID)"></button>
+      </td>
+      <td>
+        <form #employeeUpdate="ngForm"
+          (ngSubmit)="onReqToEdit(employeeUpdate.value.field,employeeUpdate.value.value, employee.employeeID)"
+          novalidate>
+          <div class="form-group info">
+            <input type="text" required class="form-control" name="field" placeholder="Field" ngModel>
+            <input type="text" required class="form-control" name="value" placeholder="Value" ngModel>
+            <input type="submit" placeholder="submit">
+          </div>
+        </form>
       </td>
     </tr>
   </tbody>

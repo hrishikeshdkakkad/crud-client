@@ -19,10 +19,27 @@ export class AddEmployeeServiceService {
     return this._http.get<any>(`${this._url}/list`);
   }
 
-  updateEmployeeImage(image: Buffer, id: number) {
+  updateEmployeeImage(image: Buffer, id: number): Observable<any> {
     const fd = new FormData();
     fd.append('upload', image);
     fd.append('employeeID', id);
     return this._http.patch(`${this._url}/employee/photo`, fd);
   }
+
+  deleteEmployeeDocument(id: string): Observable<any> {
+    return this._http.delete(`${this._url}/employee/${id}`);
+  }
+
+  updateEmployeeDetails(
+    field: string,
+    value: string,
+    id: number
+  ): Observable<any> {
+    return this._http.patch(`${this._url}/employee/${id}`, {
+      field: field,
+      value: value,
+    });
+  }
 }
+
+///employee-management/employee/:id
